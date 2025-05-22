@@ -1,0 +1,8 @@
+ipywidgets
+kagglehub
+pillow
+pandas
+matplotlib
+opencv-python
+numpy
+tensorflow
