@@ -11,9 +11,12 @@ params = {
     "rgb": True,
     "strategy": "feature_extraction",
     "fixed-layers": 5,
-    "epochs": 5,
+    "epochs": 10,
     "batch_size": 200,
-    "img_size": 200
+    "img_size": 200,
+    "input_shape": (200, 200, 3),
+    "pooling": "avg",
+    "equilibrate": True
 }
 model_name = "VGG16"
 

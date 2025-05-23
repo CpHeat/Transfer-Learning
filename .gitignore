@@ -1,14 +1,8 @@
 .venv
 /data
 /mlruns
-
-# Fichiers de base de données MariaDB/MySQL
-mlflow/db/*.sock
-mlflow/db/*.pid
-mlflow/db/binlog.index
-mlflow/db/ib*
-mlflow/db/#*
-mlflow/db/auto.cnf
+/mlflow/db
+/mlflow/minio-data
 
 # Fichiers temporaires Docker ou IDE
 __pycache__/
