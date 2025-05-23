@@ -1,0 +1,43 @@
+services:
+  s3:
+    restart: always
+    image: quay.io/minio/minio:latest
+    container_name: mlflow_s3
+    volumes:
+      - ./minio-data:/data
+    ports:
+      - 9100:9000
+      - 9101:9001
+    command:
+      - server
+      - /data
+      - --console-address
+      - ":9001"
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: 12345678
+  db:
+    restart: always
+    image: mysql:lts
+    container_name: mlflow_db
+    expose:
+     - "3306"
+    environment:
+      - MYSQL_DATABASE=mlflow
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=123456
+      - MYSQL_ROOT_PASSWORD=123456
+    volumes:
+      - ./db:/var/lib/mysql
+  mlflow:
+    restart: always
+    build: .
+    image: mlflow_server
+    container_name: mlflow_server
+    environment:
+      AWS_ACCESS_KEY_ID: admin
+      AWS_SECRET_ACCESS_KEY: 12345678
+      MLFLOW_S3_ENDPOINT_URL: http://s3:9000
+    ports:
+      - "5000:5000"
+    command: mlflow server --dev --host 0.0.0.0 --artifacts-destination s3://mlartifacts --backend-store-uri mysql+pymysql://admin:123456@db:3306/mlflow
