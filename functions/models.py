@@ -6,10 +6,34 @@ from keras.applications import MobileNetV2
 from keras.applications import DenseNet121
 from keras.applications import EfficientNetB1
 
-from settings import params
+from settings import params, added_layers, model_name
 
+MODEL_CLASSES = {
+    "vgg16": VGG16,
+    "resnet50v2": ResNet50V2,
+    "mobilenetv2": MobileNetV2,
+    "densenet121": DenseNet121,
+    "efficientnetb1": EfficientNetB1,
+}
 
-def initialize_vgg16_model():
+MODEL_SPECIFIC_PARAMS = {
+    "mobilenetv2": {
+        "alpha": params["alpha"],
+    }
+}
+
+COMMON_PARAMS = {
+    "include_top": params["include_top"],
+    "weights": params["weights"],
+    "input_tensor": params["input_tensor"],
+    "input_shape": params["input_shape"],
+    "pooling": params["pooling"],
+    "classes": 1000,
+    "classifier_activation": params["classifier_activation"],
+    "name": params["model"],
+}
+
+def initialize_model():
     #Pour le modele VGG16 on suprime la couche supérieur de classification
 
     """
@@ -51,17 +75,10 @@ def initialize_vgg16_model():
     Flatten
     Bloc final : Dense - fonction logistique pour classification binaire
     """
+    model_class = MODEL_CLASSES[params["model"].lower()]
+    model_params = {**COMMON_PARAMS, **MODEL_SPECIFIC_PARAMS.get(params["model"], {})}   
 
-    base_model = VGG16(
-        include_top=False,
-        weights="imagenet",
-        input_tensor=None,
-        input_shape=params["input_shape"],
-        pooling=params["pooling"],
-        classes=1000,
-        classifier_activation="softmax",
-        name="vgg16",
-    )
+    base_model = model_class(**model_params)
 
     # Adjust to chosen strategy
     if params["strategy"] == "fine_tuning":
@@ -74,71 +91,28 @@ def initialize_vgg16_model():
         for layer in base_model.layers:
             layer.trainable = False
 
-    model = models.Sequential([
-        base_model,
-        layers.Flatten(),
-        layers.Dense(256, activation='relu'),
-        layers.Dropout(0.5),
-        layers.Dense(2, activation='softmax')  # Classification binaire
-    ])
+    model = models.Sequential()
+    model.add(base_model)
+    for added_layer in added_layers:
+        add_layer(model, added_layer["type"], added_layer["count"], added_layer["activation"])    
 
     # Compiler le modèle 
-    model.compile(optimizer='adam',
-                loss='binary_crossentropy',
+    model.compile(optimizer=params["optimizer"],
+                loss=params["loss"],
                 metrics=['recall', 'accuracy', 'precision', 'auc', 'mean_squared_error'])
     
     return model
 
-def initialize_resnet50_model():
-    ResNet50V2(
-        include_top=True,
-        weights="imagenet",
-        input_tensor=None,
-        input_shape=params["input_shape"],
-        pooling=params["pooling"],
-        classes=1000,
-        classifier_activation="softmax",
-        name="resnet50v2",
-    )
-
-    
-
-def initialize_mobilnetv2_model():
-    MobileNetV2(
-        input_shape=params["input_shape"],
-        alpha=1.0,
-        include_top=True,
-        weights="imagenet",
-        input_tensor=None,
-        pooling=params["pooling"],
-        classes=1000,
-        classifier_activation="softmax",
-        name="mobilenetv2",
-    )
-
-def initialize_densenet121_model():
-    DenseNet121(
-        include_top=True,
-        weights="imagenet",
-        input_tensor=None,
-        input_shape=params["input_shape"],
-        pooling=params["pooling"],
-        classes=1000,
-        classifier_activation="softmax",
-        name="densenet121",
-    )
-
-def initialize_efficientnetb1_model():
-    EfficientNetB1(
-        include_top=True,
-        weights="imagenet",
-        input_tensor=None,
-        input_shape=params["input_shape"],
-        pooling=params["pooling"],
-        classes=1000,
-        classifier_activation="softmax",
-        name="efficientnetb1",
-    )
-
 def initialize_torchxrayvision_model():
     pass
+
+def add_layer(model, type, count, activation):
+        layer = None
+        if type == "flatten":
+            model.add(layers.Flatten())
+        elif type == "dense":
+            model.add(layers.Dense(count, activation=activation))
+        elif type == "dropout":
+            model.add(layers.Dropout(count))
+
+        return layer

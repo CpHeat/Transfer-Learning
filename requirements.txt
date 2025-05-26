@@ -8,3 +8,5 @@ numpy
 tensorflow
 mlflow
 seaborn
+python-dotenv
+torchxrayvision

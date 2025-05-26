@@ -7,18 +7,51 @@ epochs: how many epochs to go through
 batch_size: how many img by batch size
 img_size: self explanatory
 """
+experiment_name = "TP - Transfer Learning"
 params = {
     "rgb": True,
+    "include_top": False,
+    "input_tensor": None,
+    "classifier_activation": "softmax",
+    "alpha": 0.1,
+    "weights": "imagenet",
     "strategy": "feature_extraction",
     "fixed-layers": 5,
-    "epochs": 10,
-    "batch_size": 200,
-    "img_size": 200,
-    "input_shape": (200, 200, 3),
+    "epochs": 1,
+    "batch_size": 100,
+    "img_size": 224,
+    "input_shape": (224, 224, 3),
     "pooling": "avg",
-    "equilibrate": True
+    "equilibrate": True,
+    "optimizer": "adam",
+    "loss": "categorical_crossentropy",
+    "data_augmentation": False,
+    "model": "resnet50v2"
 }
-model_name = "VGG16"
+model_name = "Transfer Learning - ResNet50V2"
+
+added_layers = [
+    {
+        "type": "flatten",
+        "count": None,
+        "activation": None
+    },
+    {
+        "type": "dense",
+        "count": 64,
+        "activation": "relu"
+    },
+    {
+        "type": "dropout",
+        "count": 0.5,
+        "activation": None
+    },
+    {
+        "type": "dense",
+        "count": 2,
+        "activation": "softmax"
+    },
+]
 
 folders = {
     "train": {
