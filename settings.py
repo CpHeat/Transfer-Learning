@@ -1,3 +1,12 @@
+import os
+import tensorflow as tf
+
+
+# Sets the number of threads
+tf.config.threading.set_inter_op_parallelism_threads(2)
+tf.config.threading.set_intra_op_parallelism_threads(12)
+os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
+
 """
 Parameters
 rgb: are images treated as rgb or grayscale
@@ -7,6 +16,9 @@ epochs: how many epochs to go through
 batch_size: how many img by batch size
 img_size: self explanatory
 """
+
+
+
 experiment_name = "TP - Transfer Learning"
 params = {
     "rgb": False,
@@ -15,36 +27,37 @@ params = {
     "classifier_activation": "softmax",
     "alpha": 0.35,
     "weights": "imagenet",
-    "strategy": "feature_extraction",
-    "fixed-layers": 5,
+    "strategy": "partial_fine_tuning",
+    "fixed_layers": 100,
     "epochs": 10,
     "batch_size": 100,
     "img_size": 224,
     "input_shape": (224, 224, 3),
     "pooling": "avg",
     "equilibrate": True,
-    "optimizer": "adam",
+    "optimizer": tf.keras.optimizers.Adam(learning_rate=1e-4),
     "loss": "categorical_crossentropy",
     "data_augmentation": True,
     "include_preprocessing": False,
     "model": "mobilenetv2"
 }
 model_name = "Transfer Learning - MobileNetV2"
+testing_cycle = 1
 
 added_layers = [
     {
-        "type": "flatten",
-        "count": None,
+        "type": "dropout",
+        "count": 0.3,
         "activation": None
     },
     {
         "type": "dense",
-        "count": 64,
+        "count": 128,
         "activation": "relu"
     },
     {
         "type": "dropout",
-        "count": 0.5,
+        "count": 0.2,
         "activation": None
     },
     {

@@ -96,7 +96,8 @@ def initialize_model():
         for layer in base_model.layers:
             layer.trainable = True
     elif params["strategy"] == "partial_fine_tuning":
-        for layer in base_model.layers[:params["fixed-layers"]]:
+        base_model.trainable = True
+        for layer in base_model.layers[:params["fixed_layers"]]:
             layer.trainable = False
     else:
         for layer in base_model.layers:
