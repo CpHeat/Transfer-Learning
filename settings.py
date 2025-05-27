@@ -9,15 +9,15 @@ img_size: self explanatory
 """
 experiment_name = "TP - Transfer Learning"
 params = {
-    "rgb": True,
+    "rgb": False,
     "include_top": False,
     "input_tensor": None,
     "classifier_activation": "softmax",
-    "alpha": 0.1,
+    "alpha": 0.35,
     "weights": "imagenet",
     "strategy": "feature_extraction",
     "fixed-layers": 5,
-    "epochs": 1,
+    "epochs": 10,
     "batch_size": 100,
     "img_size": 224,
     "input_shape": (224, 224, 3),
@@ -25,10 +25,11 @@ params = {
     "equilibrate": True,
     "optimizer": "adam",
     "loss": "categorical_crossentropy",
-    "data_augmentation": False,
-    "model": "resnet50v2"
+    "data_augmentation": True,
+    "include_preprocessing": False,
+    "model": "mobilenetv2"
 }
-model_name = "Transfer Learning - ResNet50V2"
+model_name = "Transfer Learning - MobileNetV2"
 
 added_layers = [
     {

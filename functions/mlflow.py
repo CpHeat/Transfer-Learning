@@ -8,7 +8,7 @@ def get_run_name(experiment, model_name):
     client = mlflow.tracking.MlflowClient()
     runs = client.search_runs(experiment_ids=[experiment_id])
 
-    pattern = re.compile(rf"^{model_name}-(\d+)$")
+    pattern = re.compile(rf"^{model_name}#(\d+)$")
     max_run_number = 0
 
     for run in runs:
@@ -20,5 +20,5 @@ def get_run_name(experiment, model_name):
                 max_run_number = run_number
 
     new_run_number = max_run_number + 1
-    run_name = f"{model_name } #{new_run_number}"
+    run_name = f"{model_name }#{new_run_number}"
     return run_name

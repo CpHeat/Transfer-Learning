@@ -4,28 +4,39 @@ from keras.applications.vgg16 import VGG16
 from keras.applications import ResNet50V2
 from keras.applications import MobileNetV2
 from keras.applications import DenseNet121
-from keras.applications import EfficientNetB1
+from keras.applications import EfficientNetV2B2
+from tensorflow.keras.layers import Input
+from tensorflow.keras.metrics import Recall, Precision
 
 from settings import params, added_layers, model_name
+
 
 MODEL_CLASSES = {
     "vgg16": VGG16,
     "resnet50v2": ResNet50V2,
     "mobilenetv2": MobileNetV2,
     "densenet121": DenseNet121,
-    "efficientnetb1": EfficientNetB1,
+    "efficientnetv2-b2": EfficientNetV2B2,
 }
 
 MODEL_SPECIFIC_PARAMS = {
     "mobilenetv2": {
         "alpha": params["alpha"],
+    },
+    "efficientnetv2-b2": {
+        "include_preprocessing": params["include_preprocessing"],
     }
 }
+
+if params["input_tensor"]:
+    input_tensor = Input(shape=params["input_tensor"])
+else:
+    input_tensor = None
 
 COMMON_PARAMS = {
     "include_top": params["include_top"],
     "weights": params["weights"],
-    "input_tensor": params["input_tensor"],
+    "input_tensor": input_tensor,
     "input_shape": params["input_shape"],
     "pooling": params["pooling"],
     "classes": 1000,
@@ -99,7 +110,15 @@ def initialize_model():
     # Compiler le modèle 
     model.compile(optimizer=params["optimizer"],
                 loss=params["loss"],
-                metrics=['recall', 'accuracy', 'precision', 'auc', 'mean_squared_error'])
+                metrics=[
+                    Recall(class_id=0, name='recall_normal'),
+                    Recall(class_id=1, name='recall_pneumonia'),
+                    Precision(class_id=0, name='precision_normal'),
+                    Precision(class_id=1, name='precision_pneumonia'),
+                    'accuracy',
+                    'auc',
+                    'mean_squared_error'
+                ])
     
     return model
 

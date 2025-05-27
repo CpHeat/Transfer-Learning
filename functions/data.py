@@ -35,4 +35,6 @@ def get_train_test(base_path: str):
     # Conversion des listes en tableaux NumPy
     X = np.array(X)
     y = np.array(y)
+    if not params["rgb"]:
+        X = np.repeat(X[..., np.newaxis], 3, -1)
     return X, y
