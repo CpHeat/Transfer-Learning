@@ -1,12 +1,8 @@
 .venv
-/data
 
 # Fichiers temporaires Docker ou IDE
 __pycache__/
-*.pyc
-*.log
-*.swp
-*.tmp
 .DS_Store
 .env
 *.ipynb_checkpoints
+.vscode/
