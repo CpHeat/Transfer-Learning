@@ -1,0 +1,16 @@
+aliases: []
+creation_timestamp: 1748441947625
+current_stage: None
+description: ''
+last_updated_timestamp: 1748441947625
+name: Transfer Learning - ResNet50V2
+run_id: fbf2d4462be545439db73b64847037f9
+run_link: ''
+source: mlflow-artifacts:/348226835207806574/fbf2d4462be545439db73b64847037f9/artifacts/Transfer
+  Learning - ResNet50V2
+status: READY
+status_message: null
+storage_location: mlflow-artifacts:/348226835207806574/fbf2d4462be545439db73b64847037f9/artifacts/Transfer
+  Learning - ResNet50V2
+user_id: null
+version: 10

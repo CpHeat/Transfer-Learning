@@ -7,5 +7,3 @@ opencv-python
 numpy
 tensorflow
 mlflow
-seaborn
-python-dotenv
