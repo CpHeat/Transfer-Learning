@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/348226835207806574/749173f5c5fb413f88a9dfa62f873b7d/artifacts
+deleted_time: 1748373839607
+end_time: 1748373646694
+entry_point_name: ''
+experiment_id: '348226835207806574'
+lifecycle_stage: deleted
+run_id: 749173f5c5fb413f88a9dfa62f873b7d
+run_name: densenet121#1
+run_uuid: 749173f5c5fb413f88a9dfa62f873b7d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748373589878
+status: 3
+tags: []
+user_id: charles

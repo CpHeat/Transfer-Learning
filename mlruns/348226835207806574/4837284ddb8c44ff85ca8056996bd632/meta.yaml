@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/348226835207806574/4837284ddb8c44ff85ca8056996bd632/artifacts
+end_time: 1748380799474
+entry_point_name: ''
+experiment_id: '348226835207806574'
+lifecycle_stage: active
+run_id: 4837284ddb8c44ff85ca8056996bd632
+run_name: vgg16#1
+run_uuid: 4837284ddb8c44ff85ca8056996bd632
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748380762634
+status: 3
+tags: []
+user_id: charles

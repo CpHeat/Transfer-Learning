@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/348226835207806574/ec0996b456a04aaca483d1c1bd9cf2f7/artifacts
+end_time: 1748378216094
+entry_point_name: ''
+experiment_id: '348226835207806574'
+lifecycle_stage: active
+run_id: ec0996b456a04aaca483d1c1bd9cf2f7
+run_name: resnet50v2#1
+run_uuid: ec0996b456a04aaca483d1c1bd9cf2f7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748378164855
+status: 3
+tags: []
+user_id: charles

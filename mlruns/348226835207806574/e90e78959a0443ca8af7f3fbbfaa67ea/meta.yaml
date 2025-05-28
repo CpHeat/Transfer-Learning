@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/348226835207806574/e90e78959a0443ca8af7f3fbbfaa67ea/artifacts
+end_time: 1748377247977
+entry_point_name: ''
+experiment_id: '348226835207806574'
+lifecycle_stage: active
+run_id: e90e78959a0443ca8af7f3fbbfaa67ea
+run_name: mobilenetv2#1
+run_uuid: e90e78959a0443ca8af7f3fbbfaa67ea
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748377227271
+status: 3
+tags: []
+user_id: charles

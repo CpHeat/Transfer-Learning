@@ -1,8 +1,5 @@
 .venv
 /data
-/mlruns
-/mlflow/db
-/mlflow/minio-data
 
 # Fichiers temporaires Docker ou IDE
 __pycache__/

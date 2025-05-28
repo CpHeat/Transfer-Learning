@@ -1,0 +1,16 @@
+aliases: []
+creation_timestamp: 1748380799457
+current_stage: None
+description: ''
+last_updated_timestamp: 1748380799457
+name: Transfer Learning - VGG16
+run_id: 4837284ddb8c44ff85ca8056996bd632
+run_link: ''
+source: mlflow-artifacts:/348226835207806574/4837284ddb8c44ff85ca8056996bd632/artifacts/Transfer
+  Learning - VGG16
+status: READY
+status_message: null
+storage_location: mlflow-artifacts:/348226835207806574/4837284ddb8c44ff85ca8056996bd632/artifacts/Transfer
+  Learning - VGG16
+user_id: null
+version: 1

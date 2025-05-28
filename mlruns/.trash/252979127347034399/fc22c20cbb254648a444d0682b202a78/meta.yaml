@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/252979127347034399/fc22c20cbb254648a444d0682b202a78/artifacts
+deleted_time: 1748434481391
+end_time: 1748433686024
+entry_point_name: ''
+experiment_id: '252979127347034399'
+lifecycle_stage: deleted
+run_id: fc22c20cbb254648a444d0682b202a78
+run_name: resnet50v2#1
+run_uuid: fc22c20cbb254648a444d0682b202a78
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748433651772
+status: 3
+tags: []
+user_id: charles-petit
