@@ -29,7 +29,7 @@ Le notebook suit un workflow clair et structuré, en 9 étapes :
 Pour utiliser ce notebook, suivez les étapes ci-dessous :
 
 ```bash
-# 1. Créer un environnement virtuel
+# 1. Créer un environnement virtuel Python 3.10
 
 # 2. Installer les dépendances
 pip install -r requirements.txt

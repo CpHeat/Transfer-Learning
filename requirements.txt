@@ -8,3 +8,4 @@ opencv-python
 numpy
 tensorflow
 mlflow
+python-dotenv

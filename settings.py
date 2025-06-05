@@ -1,4 +1,4 @@
-experiment_name = "TP - Transfer Learning"
+experiment_name = "TestUser Experiments"
 params = {
     "rgb": False,
     "include_top": False,
@@ -8,7 +8,7 @@ params = {
     "weights": "imagenet",
     "strategy": "no_tuning",
     "fixed_layers": 100,
-    "epochs": 10,
+    "epochs": 1,
     "batch_size": 100,
     "img_size": 224,
     "input_shape": (224, 224, 3),
@@ -20,7 +20,7 @@ params = {
     "include_preprocessing": False,
     "model": "resnet50v2"
 }
-model_name = "Transfer Learning - ResNet50V2"
+model_name = "TestModel - ResNet50V2"
 testing_cycle = 2
 
 added_layers = [

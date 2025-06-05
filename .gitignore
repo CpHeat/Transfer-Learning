@@ -3,6 +3,5 @@
 # Fichiers temporaires Docker ou IDE
 __pycache__/
 .DS_Store
-.env
 *.ipynb_checkpoints
 .vscode/
