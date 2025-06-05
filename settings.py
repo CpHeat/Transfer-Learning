@@ -18,9 +18,9 @@ params = {
     "loss": "categorical_crossentropy",
     "data_augmentation": True,
     "include_preprocessing": False,
-    "model": "resnet50v2"
+    "model": "mobilenetv2"
 }
-model_name = "TestModel - ResNet50V2"
+model_name = "TestModel - MobileNetV2"
 testing_cycle = 2
 
 added_layers = [
