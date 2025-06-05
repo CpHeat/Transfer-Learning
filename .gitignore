@@ -1,6 +1,8 @@
 .venv
+/data
+/tmp_confusions
+confusion_matrix.png
 
-# Fichiers temporaires Docker ou IDE
 __pycache__/
 .DS_Store
 *.ipynb_checkpoints

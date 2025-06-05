@@ -46,8 +46,20 @@ def dataset_analysis():
     sizes = list(image_counts.values())
 
     # Affichage du camembert
-    plt.figure(figsize=(6, 6))
-    plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
-    plt.title("Répartition des classes")
-    plt.axis('equal')
-    plt.show()
+    fig, ax = plt.subplots(figsize=(6, 6))
+
+    # Couleurs dark mode
+    fig.patch.set_facecolor('#2e2e2e')
+    ax.set_facecolor('#2e2e2e')
+
+    # Texte blanc
+    ax.tick_params(colors='white')
+    ax.title.set_color('white')
+
+    # Tracer le camembert
+    wedges, texts, autotexts = ax.pie(
+        sizes, labels=labels, autopct='%1.1f%%', startangle=90, textprops=dict(color='white')
+    )
+
+    ax.set_title("Répartition des classes")
+    ax.axis('equal')
